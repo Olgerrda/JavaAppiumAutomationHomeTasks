@@ -24,7 +24,7 @@ public class Ex5Tests  extends BaseTest {
         waitForElementPresent
                 (By.xpath("//*[contains(@text, 'Send anonymous data')]"), "Cannot load forth onboarding screen", 15);
         waitForElementAndClick
-                (By.id("org.wikipedia:id/fragment_onboarding_done_button"), "Cannot load forth onboarding screen", 15);
+                (By.id("org.wikipedia:id/fragment_onboarding_done_button"), "Cannot find Get Started button ", 15);
         waitForElementPresent
                 (By.id("org.wikipedia:id/single_fragment_toolbar_wordmark"), "Cannot hind Wikipedia header", 15);
 
@@ -36,8 +36,9 @@ public class Ex5Tests  extends BaseTest {
         int y = size.height/2;
         int start_x = (int) (size.width * 0.9);
         int end_x = (int) (size.width * 0.1);
+
         //action.press(PointOption.point(start_x, y)).waitAction(WaitOptions.waitOptions(Duration.ofSeconds(timeOfSwipe))).moveTo(PointOption.point(end_x, y)).release().perform();
-        //Вместо TouchAction в Appium 2 принято использовать W3C Actions, которые поддерживаются Selenium и Appium.
+        //Instead of TouchAction in Appium 2 it is common to use W3C Actions, which are supported by Selenium and Appium
 
         PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
         Sequence swipe = new Sequence(finger, 1);
