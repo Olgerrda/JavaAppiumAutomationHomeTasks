@@ -1,3 +1,5 @@
 /.idea/
 /out/
 /JavaAppiumAutomation.iml
+/src/Ex2Tests.java
+/src/BaseTest.java

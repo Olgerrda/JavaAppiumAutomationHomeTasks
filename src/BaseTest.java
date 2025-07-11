@@ -73,4 +73,5 @@ public class BaseTest {
         return wait.until(ExpectedConditions.invisibilityOfElementLocated(by));
 
     }
+
 }
