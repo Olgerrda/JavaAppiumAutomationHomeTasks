@@ -13,6 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class MainPageObject {
 
@@ -28,39 +29,40 @@ public class MainPageObject {
     }
     /*TEMPLATES METHODS*/
 
-    public WebElement waitForElementPresent(By by, String error_message, long timeoutInSeconds) {
+    public WebElement waitForElementPresent(String locator, String error_message, long timeoutInSeconds) {
+        By by = this.getLocatorByString(locator);
         WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
         wait.withMessage(error_message + "\n");
         return wait.until(ExpectedConditions.presenceOfElementLocated(by));
     }
 
-    public WebElement waitForElementPresent(By by, String error_message) {
-        return waitForElementPresent(by, error_message, 5);
+    public WebElement waitForElementPresent(String locator, String error_message) {
+        return waitForElementPresent(locator, error_message, 5);
     }
 
-    public WebElement waitForElementAndClick(By by, String error_message, long timeoutInSeconds) {
-        WebElement element = waitForElementPresent(by, error_message, timeoutInSeconds);
+    public WebElement waitForElementAndClick(String locator, String error_message, long timeoutInSeconds) {
+        WebElement element = waitForElementPresent(locator, error_message, timeoutInSeconds);
         element.click();
         return element;
     }
 
-    public WebElement waitForElementAndSendKeys(By by, String value, String error_message, long timeoutInSeconds) {
-        WebElement element = waitForElementPresent(by, error_message, timeoutInSeconds);
+    public WebElement waitForElementAndSendKeys(String locator, String value, String error_message, long timeoutInSeconds) {
+        WebElement element = waitForElementPresent(locator, error_message, timeoutInSeconds);
         element.sendKeys(value);
         return element;
     }
 
-    public boolean waitForElementNotPresent(By by, String error_message, long timeoutInSeconds) {
+    public boolean waitForElementNotPresent(String locator, String error_message, long timeoutInSeconds) {
+        By by = this.getLocatorByString(locator);
         WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
         wait.withMessage(error_message + "\n");
         return wait.until(ExpectedConditions.invisibilityOfElementLocated(by));
 
     }
 
-    public WebElement waitForElementAndClear(By by, String error_message, long timeoutInSeconds) {
-        WebElement element = waitForElementPresent(by, error_message, timeoutInSeconds);
+    public void waitForElementAndClear(String locator, String error_message, long timeoutInSeconds) {
+        WebElement element = waitForElementPresent(locator, error_message, timeoutInSeconds);
         element.clear();
-        return element;
     }
 
     public void swipeLeft(long timeOfSwipeInMs) {
@@ -84,11 +86,12 @@ public class MainPageObject {
         swipeLeft(200);
     }
 
-    public void swipeLeftToElement(By by, String error_message, int max_swipes) {
+    public void swipeLeftToElement(String locator, String error_message, int max_swipes) {
+        By by = this.getLocatorByString(locator);
         int already_swiped = 0;
         while (driver.findElements(by).size() == 0) {
             if (already_swiped > max_swipes) {
-                waitForElementPresent(by, "Cannot find element by swiping left. \n" + error_message, 0);
+                waitForElementPresent(locator, "Cannot find element by swiping left. \n" + error_message, 0);
                 return;
             }
             swipeLeftQuick();
@@ -117,11 +120,12 @@ public class MainPageObject {
         swipeUp(200);
     }
 
-    public void swipeUpToFindElement(By by, String error_message, int max_swipes) {
+    public void swipeUpToFindElement(String locator, String error_message, int max_swipes) {
+        By by = this.getLocatorByString(locator);
         int already_swiped = 0;
         while (driver.findElements(by).size() == 0) {
             if (already_swiped > max_swipes) {
-                waitForElementPresent(by, "Cannot find element by swiping up. \n" + error_message, 0);
+                waitForElementPresent(locator, "Cannot find element by swiping up. \n" + error_message, 0);
                 return;
             }
             swipeUpQuick();
@@ -130,8 +134,8 @@ public class MainPageObject {
 
     }
 
-    public void swipeElementToLeft(By by, String error_message) {
-        WebElement element = waitForElementPresent(by, error_message, 10);
+    public void swipeElementToLeft(String locator, String error_message) {
+        WebElement element = waitForElementPresent(locator, error_message, 10);
         int left_x = element.getLocation().getX();
         int right_x = left_x + element.getSize().getWidth();
         int upper_y = element.getLocation().getY();
@@ -148,25 +152,27 @@ public class MainPageObject {
         driver.perform(Arrays.asList(swipe));
     }
 
-    public int getAmountOfElements(By by) {
+    public int getAmountOfElements(String locator) {
+        By by = this.getLocatorByString(locator);
         List elements = driver.findElements(by);
         return elements.size();
     }
 
-    public void assertElementNotPresent(By by, String error_message) {
-        int amount_of_elements = getAmountOfElements(by);
+    public void assertElementNotPresent(String locator, String error_message) {
+        int amount_of_elements = getAmountOfElements(locator);
         if (amount_of_elements > 0 ) {
-            String default_message = "An element '" + by.toString() + "' supposed to be not present";
+            String default_message = "An element '" + locator + "' supposed to be not present";
             throw new AssertionError(default_message + " " + error_message);
         }
     }
 
-    public String waitForElementAndGetAttribute(By by, String attribute, String error_message, long timeoutInSeconds) {
-        WebElement element = waitForElementPresent(by, error_message, timeoutInSeconds);
+    public String waitForElementAndGetAttribute(String locator, String attribute, String error_message, long timeoutInSeconds) {
+        WebElement element = waitForElementPresent(locator, error_message, timeoutInSeconds);
         return element.getAttribute(attribute);
     }
 
-    public List<WebElement> waitForMultipleElementsPresent(By by, String errorMessage, long timeoutInSeconds) {
+    public List<WebElement> waitForMultipleElementsPresent(String locator, String errorMessage, long timeoutInSeconds) {
+        By by = this.getLocatorByString(locator);
         WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
         wait.withMessage(errorMessage + "\n");
         List<WebElement> elements = driver.findElements(by);
@@ -176,13 +182,28 @@ public class MainPageObject {
         return null;
     }
 
-    public void assertElementPresent(By by, String error_message) {
+    public void assertElementPresent(String locator, String error_message) {
+        By by = this.getLocatorByString(locator);
         List element = driver.findElements(by);
         int amount_of_elements = element.size();
         if (amount_of_elements <= 0 ) {
-            String default_message = "An element '" + by.toString() + "' supposed to be not present: ";
+            String default_message = "An element '" + locator + "' supposed to be not present: ";
             throw new AssertionError(default_message + " " + error_message);
         }
         Assert.assertNotNull(error_message, element);
+    }
+
+    private By getLocatorByString(String locator_with_type) {
+        String[] exploaded_locator = locator_with_type.split(Pattern.quote(":"), 2);
+        String by_type = exploaded_locator[0];
+        String locator = exploaded_locator[1];
+
+        if (by_type.equals("xpath")){
+            return By.xpath(locator);
+        } else if (by_type.equals("id")) {
+            return By.id(locator);
+        } else {
+            throw new IllegalArgumentException("Cannot get type of locator. Locator: " + locator_with_type);
+        }
     }
 }

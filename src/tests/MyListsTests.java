@@ -9,7 +9,7 @@ public class MyListsTests extends CoreTestCase {
     @Test
     public void testSaveFirstArticleToMyList() {
         OnboardingPageObject OnboardingPageObject = new OnboardingPageObject(driver);
-        OnboardingPageObject.clickSkipButton();
+        OnboardingPageObject.clickSkipOnboarding();
 
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
         SearchPageObject.initSearchInput();

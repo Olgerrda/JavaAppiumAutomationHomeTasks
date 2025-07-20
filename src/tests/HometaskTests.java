@@ -12,7 +12,7 @@ public class HometaskTests extends CoreTestCase {
     @Test
     public void testCancelSearch() {
         OnboardingPageObject OnboardingPageObject = new OnboardingPageObject(driver);
-        OnboardingPageObject.clickSkipButton();
+        OnboardingPageObject.clickSkipOnboarding();
 
         String search_line = "Batman";
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
@@ -25,9 +25,9 @@ public class HometaskTests extends CoreTestCase {
 
     //Ex5
     @Test
-    public void testSwipeOnboarding() {
+    public void testSwipeOnboardingWithWaitForNextScreen() {
         OnboardingPageObject OnboardingPageObject = new OnboardingPageObject(driver);
-        OnboardingPageObject.initOnboarding();
+        OnboardingPageObject.waitForSkipOnboarding();
         OnboardingPageObject.swipeOnboardingLeft(1000);
         OnboardingPageObject.waitForNextOnboardingScreenPresent("New ways to explore");
         OnboardingPageObject.swipeOnboardingLeft(1000);
@@ -41,7 +41,7 @@ public class HometaskTests extends CoreTestCase {
     @Test
     public void testArticleTitlePresent() {
         OnboardingPageObject OnboardingPageObject = new OnboardingPageObject(driver);
-        OnboardingPageObject.clickSkipButton();
+        OnboardingPageObject.clickSkipOnboarding();
 
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
         SearchPageObject.initSearchInput();

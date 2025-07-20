@@ -9,7 +9,7 @@ public class OnboardingTests extends CoreTestCase {
     @Test
     public void testSwipeOnboarding() {
         OnboardingPageObject OnboardingPageObject = new OnboardingPageObject(driver);
-        OnboardingPageObject.initOnboarding();
+        OnboardingPageObject.waitForSkipOnboarding();
         OnboardingPageObject.swipeOnboarding(6);
     }
 

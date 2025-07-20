@@ -11,7 +11,7 @@ public class ArticleTests extends CoreTestCase {
     @Test
     public void testCompareArticleTitle() {
         OnboardingPageObject OnboardingPageObject = new OnboardingPageObject(driver);
-        OnboardingPageObject.clickSkipButton();
+        OnboardingPageObject.clickSkipOnboarding();
 
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
         SearchPageObject.initSearchInput();
@@ -28,7 +28,7 @@ public class ArticleTests extends CoreTestCase {
     @Test
     public void testSwipeArticle() {
         OnboardingPageObject OnboardingPageObject = new OnboardingPageObject(driver);
-        OnboardingPageObject.clickSkipButton();
+        OnboardingPageObject.clickSkipOnboarding();
 
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
         SearchPageObject.initSearchInput();
