@@ -10,7 +10,7 @@ public class SearchTests extends CoreTestCase {
     @Test
     public void testSimpleSearch() {
         OnboardingPageObject OnboardingPageObject = new OnboardingPageObject(driver);
-        OnboardingPageObject.clickSkipButton();
+        OnboardingPageObject.clickSkipOnboarding();
 
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
         SearchPageObject.initSearchInput();
@@ -21,7 +21,7 @@ public class SearchTests extends CoreTestCase {
     @Test
     public void testCancelSearch() {
         OnboardingPageObject OnboardingPageObject = new OnboardingPageObject(driver);
-        OnboardingPageObject.clickSkipButton();
+        OnboardingPageObject.clickSkipOnboarding();
 
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
         SearchPageObject.initSearchInput();
@@ -33,7 +33,7 @@ public class SearchTests extends CoreTestCase {
     @Test
     public void testAmountOfNotEmptySearch() {
         OnboardingPageObject OnboardingPageObject = new OnboardingPageObject(driver);
-        OnboardingPageObject.clickSkipButton();
+        OnboardingPageObject.clickSkipOnboarding();
 
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
         SearchPageObject.initSearchInput();
@@ -48,7 +48,7 @@ public class SearchTests extends CoreTestCase {
     @Test
     public void testAmountOfEmptySearch() {
         OnboardingPageObject OnboardingPageObject = new OnboardingPageObject(driver);
-        OnboardingPageObject.clickSkipButton();
+        OnboardingPageObject.clickSkipOnboarding();
 
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
         SearchPageObject.initSearchInput();

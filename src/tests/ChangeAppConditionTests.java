@@ -11,7 +11,7 @@ public class ChangeAppConditionTests extends CoreTestCase {
     @Test
     public void testChangeScreenOrientationOnSearchResults() {
         OnboardingPageObject OnboardingPageObject = new OnboardingPageObject(driver);
-        OnboardingPageObject.clickSkipButton();
+        OnboardingPageObject.clickSkipOnboarding();
 
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
         SearchPageObject.initSearchInput();
@@ -34,7 +34,7 @@ public class ChangeAppConditionTests extends CoreTestCase {
     @Test
     public void testCheckSearchArticleInBackground() {
         OnboardingPageObject OnboardingPageObject = new OnboardingPageObject(driver);
-        OnboardingPageObject.clickSkipButton();
+        OnboardingPageObject.clickSkipOnboarding();
 
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
         SearchPageObject.initSearchInput();
