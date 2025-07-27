@@ -3,16 +3,18 @@ package tests;
 import lib.CoreTestCase;
 import lib.ui.OnboardingPageObject;
 import lib.ui.SearchPageObject;
+import lib.ui.factories.OnboardingPageObjectFactory;
+import lib.ui.factories.SearchPageObjectFactory;
 import org.junit.Test;
 
 public class SearchTests extends CoreTestCase {
 
     @Test
     public void testSimpleSearch() {
-        OnboardingPageObject OnboardingPageObject = new OnboardingPageObject(driver);
+        OnboardingPageObject OnboardingPageObject = OnboardingPageObjectFactory.get(driver);
         OnboardingPageObject.clickSkipOnboarding();
 
-        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine("Java");
         SearchPageObject.waitForSearchResult("Object-oriented programming language");
@@ -20,10 +22,10 @@ public class SearchTests extends CoreTestCase {
 
     @Test
     public void testCancelSearch() {
-        OnboardingPageObject OnboardingPageObject = new OnboardingPageObject(driver);
+        OnboardingPageObject OnboardingPageObject = OnboardingPageObjectFactory.get(driver);
         OnboardingPageObject.clickSkipOnboarding();
 
-        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine("Java");
         SearchPageObject.clickCancelSearch();
@@ -32,10 +34,10 @@ public class SearchTests extends CoreTestCase {
 
     @Test
     public void testAmountOfNotEmptySearch() {
-        OnboardingPageObject OnboardingPageObject = new OnboardingPageObject(driver);
+        OnboardingPageObject OnboardingPageObject = OnboardingPageObjectFactory.get(driver);
         OnboardingPageObject.clickSkipOnboarding();
 
-        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
         SearchPageObject.initSearchInput();
 
         String search_line = "Linkin Park discography";
@@ -47,10 +49,10 @@ public class SearchTests extends CoreTestCase {
 
     @Test
     public void testAmountOfEmptySearch() {
-        OnboardingPageObject OnboardingPageObject = new OnboardingPageObject(driver);
+        OnboardingPageObject OnboardingPageObject = OnboardingPageObjectFactory.get(driver);
         OnboardingPageObject.clickSkipOnboarding();
 
-        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
         SearchPageObject.initSearchInput();
 
         String search_line = "adsfalskflkr";

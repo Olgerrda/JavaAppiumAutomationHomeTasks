@@ -4,6 +4,9 @@ import lib.CoreTestCase;
 import lib.ui.ArticlePageObject;
 import lib.ui.OnboardingPageObject;
 import lib.ui.SearchPageObject;
+import lib.ui.factories.ArticlePageObjectFactory;
+import lib.ui.factories.OnboardingPageObjectFactory;
+import lib.ui.factories.SearchPageObjectFactory;
 import org.junit.Test;
 
 public class HometaskTests extends CoreTestCase {
@@ -11,11 +14,11 @@ public class HometaskTests extends CoreTestCase {
     //Ex3
     @Test
     public void testCancelSearch() {
-        OnboardingPageObject OnboardingPageObject = new OnboardingPageObject(driver);
+        OnboardingPageObject OnboardingPageObject = OnboardingPageObjectFactory.get(driver);
         OnboardingPageObject.clickSkipOnboarding();
 
         String search_line = "Batman";
-        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine(search_line);
         SearchPageObject.waitForMultipleSearchResults(search_line);
@@ -26,7 +29,7 @@ public class HometaskTests extends CoreTestCase {
     //Ex5
     @Test
     public void testSwipeOnboardingWithWaitForNextScreen() {
-        OnboardingPageObject OnboardingPageObject = new OnboardingPageObject(driver);
+        OnboardingPageObject OnboardingPageObject = OnboardingPageObjectFactory.get(driver);
         OnboardingPageObject.waitForSkipOnboarding();
         OnboardingPageObject.swipeOnboardingLeft(1000);
         OnboardingPageObject.waitForNextOnboardingScreenPresent("New ways to explore");
@@ -40,15 +43,15 @@ public class HometaskTests extends CoreTestCase {
     //Ex6
     @Test
     public void testArticleTitlePresent() {
-        OnboardingPageObject OnboardingPageObject = new OnboardingPageObject(driver);
+        OnboardingPageObject OnboardingPageObject = OnboardingPageObjectFactory.get(driver);
         OnboardingPageObject.clickSkipOnboarding();
 
-        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine("Java");
         SearchPageObject.clickAtArticleWithSubstring("Object-oriented programming language");
 
-        ArticlePageObject ArticlePageObject = new ArticlePageObject(driver);
+        ArticlePageObject ArticlePageObject = ArticlePageObjectFactory.get(driver);
         ArticlePageObject.closeWikipediaGamesDialog();
         ArticlePageObject.checkArticleTitle("Java (programming language)");
     }

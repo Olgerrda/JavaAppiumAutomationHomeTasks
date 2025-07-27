@@ -2,10 +2,10 @@ package lib.ui;
 
 import io.appium.java_client.AppiumDriver;
 
-public class NavigationUI extends MainPageObject {
+abstract public class NavigationUI extends MainPageObject {
 
-    private static final String
-            TAB_READING_LISTS_ID = "id:org.wikipedia.alpha:id/nav_tab_reading_lists";
+    protected static String
+            TAB_READING_LISTS;
 
     public NavigationUI(AppiumDriver driver) {
         super(driver);
@@ -13,6 +13,6 @@ public class NavigationUI extends MainPageObject {
 
     public void clickMyLists() {
         this.waitForElementAndClick(
-                TAB_READING_LISTS_ID, "Cannot find navigation button to My lists", 5);
+                TAB_READING_LISTS, "Cannot find navigation button to My lists", 5);
     }
 }
