@@ -1,6 +1,7 @@
 package tests;
 
 import lib.CoreTestCase;
+import lib.Platform;
 import lib.ui.ArticlePageObject;
 import lib.ui.OnboardingPageObject;
 import lib.ui.SearchPageObject;
@@ -34,9 +35,17 @@ public class HometaskTests extends CoreTestCase {
         OnboardingPageObject.swipeOnboardingLeft(1000);
         OnboardingPageObject.waitForNextOnboardingScreenPresent("New ways to explore");
         OnboardingPageObject.swipeOnboardingLeft(1000);
-        OnboardingPageObject.waitForNextOnboardingScreenPresent("Reading lists with sync");
+        if (Platform.getInstance().isIOS()) {
+            OnboardingPageObject.waitForNextOnboardingScreenPresent("Search in over 300 languages");
+        } else {
+            OnboardingPageObject.waitForNextOnboardingScreenPresent("Reading lists with sync");
+        }
         OnboardingPageObject.swipeOnboardingLeft(1000);
-        OnboardingPageObject.waitForNextOnboardingScreenPresent("Data & Privacy");
+        if (Platform.getInstance().isIOS()) {
+            OnboardingPageObject.waitForNextOnboardingScreenPresent("Help make the app better");
+        } else {
+            OnboardingPageObject.waitForNextOnboardingScreenPresent("Data & Privacy");
+        }
         OnboardingPageObject.finishOnboarding();
     }
 

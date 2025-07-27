@@ -6,7 +6,7 @@ public class OnboardingPageObject extends MainPageObject {
 
     protected static String
             SKIP_ONBOARDING_BUTTON,
-            DONE_ONBOARDING_BUTTON,
+
             ONBOARDING_SCREEN_TITLE_TPL,
             ONBOARDING_DONE_BUTTON,
             WIKIPEDIA_HEADER,
@@ -31,7 +31,7 @@ public class OnboardingPageObject extends MainPageObject {
     }
 
     public void swipeOnboarding(int max_swipes) {
-        this.swipeLeftToElement(DONE_ONBOARDING_BUTTON,"Cannot find Done button", max_swipes);
+        this.swipeLeftToElement(GET_STARTED_BUTTON,"Cannot find Get started button", max_swipes);
     }
 
     public void swipeOnboardingLeft(int time_of_swipe_ms) {
@@ -45,7 +45,7 @@ public class OnboardingPageObject extends MainPageObject {
 
     public void finishOnboarding () {
         this.waitForElementAndClick
-                (ONBOARDING_DONE_BUTTON, "Cannot find Get Started button ", 15);
+                (GET_STARTED_BUTTON, "Cannot find Get Started button ", 15);
         this.waitForElementPresent
                 (WIKIPEDIA_HEADER, "Cannot find Wikipedia header", 15);
     }
